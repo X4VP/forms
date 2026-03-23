@@ -1,10 +1,15 @@
 const express= require('express');
 const app = express();
-const userRouter = require('./users');
+const userRouter = require('./routers/users');
+const quizRouter = require('./routers/quiz');
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use('/users', userRouter);
+app.use('/quiz', quizRouter);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.get('/', (req, res)=>{
 
 app.get('/solution', (req, res) => {
     let num1= parseInt(req.query['num1']);
