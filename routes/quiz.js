@@ -14,7 +14,14 @@ router.get("/", asynch (req, res)=>{
 });
 router.post("/"), (req, res)=>{
     console.log(req.body);
-
+    let {userChoice, correctDef,totalQuestions,totalCorrect} = req.body;
+    if {userChoice === correctDef} {
+        console.log("User guessed Correctly!");
+        let score= totalQuestions+1;    }
+    let total= totalQuestions+1;
+    //get another new set of words..how?
+    //send that set of words back with the user answers
+    //send some other data back?
 let getWords = async()=>{
     //get a rdm part of speech
      let randomPart= getRandomPart();      //i should have noun,verb,adjective

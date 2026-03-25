@@ -4,11 +4,19 @@
 <head>
     <title>Document</title>
     <body>
-        <% let randomIndex = parseInt (Math.random()*chosenWords.length);
+        <% let questionCount=locals.totalQuestions ?? 0;
+        let score=totalCorrect ?? 0;
+        let randomIndex = parseInt (Math.random()*chosenWords.length);
            let chosenWord = chosenWords[randomIndex];
            let [correctWord, correctPart,correctDef] = chosenWord.split('\t');
            %>
            <h1>Word Quiz!</h1>
+           <% if(questionCount===0){ %>
+          <h1>Welcome to the word quiz</h1>
+          <% } else{ %>
+            <h1>Score: <% score %>/<% questionCount %></h1>  
+            <% } %>
+        }
            <h1><%= correctWord %>  - <% correctPart %></h1>
            <form action="quiz" method="post"> //submit to quiz.js
            <ol>
@@ -25,6 +33,9 @@
            </ol>
            <input type="hidden" name ="correctDef" value="<%= correctDef %>">
            <input type="submit" valu="Submit Answer!">
+           <input type="hidden" name ="totalQuestions" value="<%= questionsCount %>">
+           <input type="hidden" name ="totalCorrect" value="<%= score %>">
+           
         </form>
            </body>
 </head>
