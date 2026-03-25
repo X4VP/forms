@@ -5,8 +5,10 @@ const quizRouter = require('./routers/quiz');
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
+
 app.use('/users', userRouter);
 app.use('/quiz', quizRouter);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.get('/', (req, res)=>{

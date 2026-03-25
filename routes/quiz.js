@@ -1,19 +1,36 @@
 const express = require('express');
+const { get } = require('http');
 const router= express.Router();
 const {readFile} = require('fs').promises;
 //Trabajo aqui
 
-router.get("/", (req, res)=>{
+router.get("/", asynch (req, res)=>{
     //Get 4 words with thier pos and def and send back to the other page
-
+    let chosenWords= await getWords();
     //send back and render quiz.ejs
-
+   console.log("Chosen Words:", chosenWords);  //check if its working
+   res.render('quiz', {chosenWords});
+   
 });
 
 let getWords = async()=>{
     //get a rdm part of speech
-
+     let randomPart= getRandomPart();      //i should have noun,verb,adjective
+     
     //based on tht, pick 4 words that match
+       let allWords = await readFile('resources/allWords.json', 'utf-8');
+       let wordArray= allWords.split('\n'); //splits the single string into an array where each line is an indec
+       shuffle(wordArray); //shuffle that array
+
+       let choices = [];
+       while (choices.length < 5) { //keep looping until we have 5 choices
+        let line = wordArray.pop();  // one line as a string
+        let [word, part, def] = line.split('/t');
+        if (part === randomPart) {. //if the part of word matches my rdm part we pciked, we keeps
+            choices.push(line)
+        }
+    }
+    return choices;
 }
 
 let getRandomPart = ()=>{
@@ -24,7 +41,8 @@ let getRandomPart = ()=>{
 }   
 
 let shuffle = (array)=>{
-    for (let i = array.length - 1;i>=0;i--) {
+    //fisher Yales alg
+    for (let i = array.length - 1;i>0;i--) {
   let randomNumber= Math.floor(Math.random() * (i + 1));
   [array[i], array[randomNumber]] = [array[randomNumber], array[i]];
     
