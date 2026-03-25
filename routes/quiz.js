@@ -12,6 +12,8 @@ router.get("/", asynch (req, res)=>{
    res.render('quiz', {chosenWords});
    
 });
+router.post("/"), (req, res)=>{
+    console.log(req.body);
 
 let getWords = async()=>{
     //get a rdm part of speech
