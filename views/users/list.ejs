@@ -8,14 +8,14 @@
 <body>
 <h1>Our Current Users</h1>
 <table>
-    <tr>
+    <tr>//table of users w/ first and last name
         <th>First Name</th>
         <th>Last Name</th>
     </tr>
-    <% let users = locals.users;
+    <% let users = locals.users; 
     for(let i = 0; i < users.length; i++){ %>
     <tr>
-        <td><a href="/users/<%= i %>"><%= users[i].firstName %></a></td>
+        <td><a href="/users/<%= i %>"><%= users[i].firstName %></a></td> <!--a link to the other page that has user's additional information -->
         <td><%= users[i].lastName %></td>
     </tr>
     <% } %>
