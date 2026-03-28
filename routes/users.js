@@ -10,7 +10,7 @@ router.route('/').get((req, res)=>{
     const age= req.body.age;
     const isValid= firstName !=="";
     if(isValid){
-        console.log("Adding user:s{firstName}'];
+        console.log("Adding users:{firstName}'];
         users.push({firstName:firstName, lastName:lastName, gender:gender, age:age});
         res.render('users/list'),{users};
     }
