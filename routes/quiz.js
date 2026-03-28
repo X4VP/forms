@@ -19,6 +19,7 @@ router.post("/"), (req, res)=>{
         console.log("User guessed Correctly!");
         let score= totalQuestions+1;    }
     let total= totalQuestions+1;
+    //hw hint its the 7-12 lines
     //get another new set of words..how?
     //send that set of words back with the user answers
     //send some other data back?
